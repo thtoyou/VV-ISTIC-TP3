@@ -3,21 +3,21 @@
 Implement a class `Date` with the interface shown below:
 
 ```java
-class Date implements Comparable<Date> {
-
-    public Date(int day, int month, int year) { ... }
-
-    public static boolean isValidDate(int day, int month, int year) { ... }
-
-    public static boolean isLeapYear(int year) { ... }
-
-    public Date nextDate() { ... }
-
-    public Date previousDate { ... }
-
-    public int compareTo(Date other) { ... }
-
-}
+//class Date implements Comparable<Date> {
+//
+//    public Date(int day, int month, int year) { ... }
+//
+//    public static boolean isValidDate(int day, int month, int year) { ... }
+//
+//    public static boolean isLeapYear(int year) { ... }
+//
+//    public Date nextDate() { ... }
+//
+//    public Date previousDate { ... }
+//
+//    public int compareTo(Date other) { ... }
+//
+//}
 ```
 
 The constructor throws an exception if the three given integers do not form a valid date.
@@ -45,6 +45,35 @@ Also, feel free to add any extra method you may need to the `Date` class.
 Use the following steps to design the test suite:
 
 1. With the help of *Input Space Partitioning* design a set of initial test inputs for each method. Write below the characteristics and blocks you identified for each method. Specify which characteristics are common to more than one method.
+
+
+    Method isValidDate : 
+        caracteristic : Day value ; blocs : 
+
+                        month value ; blocs : 
+ 
+                        year value ; blocs : 
+            
+
+    Method isLeapYear : 
+        caracteristic : IsYearValueDividedBy4 ; blocs : True , false 
+                        isYearValueNotDividedBy100 ; blocs : True , false 
+                        isDividedBY400 ; blocs : True , false 
+
+
+    Method nextDate :
+        caracteristic : IsLastDayOfMonth ; blocs : True , false 
+
+
+    Method previousDate : 
+        caracteristic : IsFirstDayOfMonth ; blocs : True , false 
+
+
+    Method compareTo : 
+        caracteristic : IsDate1EqualToDate2 ; blocs : True , false 
+
+ There is no common caracteristics for differents methods in our case. 
+
 2. Evaluate the statement coverage of the test cases designed in the previous step. If needed, add new test cases to increase the coverage. Describe below what you did in this step.
 3. If you have in your code any predicate that uses more than two boolean operators check if the test cases written to far satisfy *Base Choice Coverage*. If needed add new test cases. Describe below how you evaluated the logic coverage and the new test cases you added.
 4. Use PIT to evaluate the test suite you have so far. Describe below the mutation score and the live mutants. Add new test cases or refactor the existing ones to achieve a high mutation score.
