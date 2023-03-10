@@ -1,20 +1,24 @@
 package fr.istic.vv;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class balancedStringTest {
-    @BeforeEach
-    public void setup() {
-        fr.istic.vv.StringUtils.clearStack();
-    }
 
     @Test
     public void isBalancedTestNullInput() {
         assertTrue(fr.istic.vv.StringUtils.isBalanced(""), "the empty string should return true");
+    }
+
+    @Test
+    public void OnlyOneOpening() {
+        assertFalse(fr.istic.vv.StringUtils.isBalanced("("), "the empty string should return true");
+    }
+    @Test
+    public void OnlyOneClosing() {
+        assertFalse(fr.istic.vv.StringUtils.isBalanced("}"), "the empty string should return true");
     }
 
     @Test
@@ -25,6 +29,10 @@ class balancedStringTest {
     @Test
     public void isBalancedTestBalanced() {
         assertTrue(fr.istic.vv.StringUtils.isBalanced("[[{()(){}}]]"), "a balanced string should return true");
+    }
+    @Test
+    public void isBalancedTestBalancedUnmatch() {
+        assertFalse(fr.istic.vv.StringUtils.isBalanced("[[{()(){}})]"), "a balanced string should return true");
     }
 
     @Test
@@ -44,11 +52,16 @@ class balancedStringTest {
 
     @Test
     public void isBalancedTestTooManyClosingTags() {
-        assertFalse(fr.istic.vv.StringUtils.isBalanced("[[[{}())]]]"), "Too many closing tags should return false");
+        assertFalse(fr.istic.vv.StringUtils.isBalanced("[[[{}()))]]]]"), "Too many closing tags should return false");
     }
 
     @Test
     public void isBalancedTestLargeInput() {
         assertTrue(fr.istic.vv.StringUtils.isBalanced("((((((((((((((((((((((([[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]])))))))))))))))))))))))"), "large number of calls should not crash");
+    }
+
+    @Test
+    public void isUnbalancedTestLargeInput() {
+        assertFalse(fr.istic.vv.StringUtils.isBalanced("((((((((((((((((((((((([[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]])]]]]]]]])))))))))))))))))))))))"), "large number of calls should not crash");
     }
 }

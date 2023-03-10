@@ -26,3 +26,9 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+question 1 : For the input of type String, the caracteristics are : Length,Vocabulary,Balanced,number of pairsFor each of them we can describe the domains that could trigger a diferent response from our system. Length = 0 ; length != 0; The presence of characters which are not in our alphabet : True or FalseIs our String balanced : true or false The number of pairs : 0, [1,100],[100,1000],[1000, 10 000] ...we will try to run tests with inputs reaching every of the blocs.
+
+Question 2 : by running the tests on our code, we got 100% class coverage (1/1) 100% method coverage (3/3) and 92% line coverage (22/24) this can be improved by adding new cases to reach unused code (here, some return false scenarios). But all the blocs were tested at least once. 
+Question 3 : Error in the question, we already applied Base choice Coverage. 
+
+Question 4: as adviced by Oscar, we rewrote our code to remove the recursive aspect. By doing so, our mutation score went down from 95% to 80%. we then found mistakes in our code and added some test cases : Only one opening tag and only one closing tag. To achieve 100% mutation score we implemented one more test case : the balanced with a mismatch (one closing tag replace by another one) 

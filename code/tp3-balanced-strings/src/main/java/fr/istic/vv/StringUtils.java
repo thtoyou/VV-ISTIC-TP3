@@ -1,60 +1,60 @@
 package fr.istic.vv;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Stack;
 
-public final class StringUtils{
-    static final Stack stack = new Stack();
+public final class StringUtils {
 
-    public static void clearStack() {
-        stack.clear();
+
+    public static boolean isTheRightClosing(char ch, char shouldBeClosing) {
+        return ((ch == ']' && shouldBeClosing == '[') || (ch == ')' & shouldBeClosing == '(') || (ch == '}' && shouldBeClosing == '{'));
     }
 
     public static boolean isBalanced(String testedString) {
+        final Stack stack = new Stack();
 
-        if (testedString.length() == 0) {
-            if (stack.empty()) {
-                return true;
-            } else {
+        if (testedString.isEmpty()) {
+            return true;
+        }
+
+        for (int i = 0; i < testedString.length(); i++) {
+            char currentChar = testedString.charAt(i);
+            if (!isLegal(currentChar)) {
                 return false;
             }
-
-        } else {
-
-            if (testedString.charAt(0) != '[' && testedString.charAt(0) != '('
-                    && testedString.charAt(0) != '{') {
-
-                switch (testedString.substring(0, 1)) {
-                    case "]":
-                        if (stack.peek().toString().charAt(0) == '[') {
-                            stack.pop();
-                            return isBalanced(testedString.substring(1));
-                        } else {
-                            return false;
-                        }
-                    case "}":
-                        if (stack.peek().toString().charAt(0) == '{') {
-                            stack.pop();
-                            return isBalanced(testedString.substring(1));
-                        } else {
-                            return false;
-                        }
-                    case ")":
-                        if (stack.peek().toString().charAt(0) == '(') {
-                            stack.pop();
-                            return isBalanced(testedString.substring(1));
-                        } else {
-                            return false;
-                        }
-                    default:
-                        return false;
-                }
-
-            } else {
-
-                stack.add(testedString.charAt(0));
-                return isBalanced(testedString.substring(1));
+            if (isOpen(currentChar)) {
+                stack.push(currentChar);
             }
-
+            if (isClosing(currentChar)) {
+                if (stack.empty()) {
+                    return false;
+                }
+                char topStack = (char) stack.pop();
+                if (!isTheRightClosing(currentChar, topStack)) {
+                    return false;
+                }
+            }
         }
+        return stack.empty();
+
+
+    }
+
+    public static boolean isOpen(char ch) {
+        Set<Character> opening = new HashSet<>();
+        opening.addAll(Arrays.asList('{', '[', '('));
+        return opening.contains(ch);
+    }
+
+    public static boolean isClosing(char ch) {
+        Set<Character> closing = new HashSet<>();
+        closing.addAll(Arrays.asList('}', ']', ')'));
+        return closing.contains(ch);
+    }
+
+    public static boolean isLegal(char ch) {
+        return (isClosing(ch) || isOpen(ch));
     }
 }
