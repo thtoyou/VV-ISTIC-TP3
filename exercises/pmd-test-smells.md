@@ -15,7 +15,7 @@ Include the improved test code in this file.
 
 ## Answer
 
-Question 2 : As discussed in class, a test should test one thing (single responsability) and to do so it should have only a few assertions. The maximum number of assertions is obviously not clearly established but it is a bad smell if a dozen of asserts are in the same test case.  Like in "testChainedClosure()" in the commons.collections4.ClosureUtilsTest.java where 13 asserts are made in the same test. It makes it hard to understand why the test fails. It would gain to be cut in 2 or 3 smaller test cases. Here we cut the test case in half and duplicate it :
+As discussed in class, a test should test one thing (single responsability) and to do so it should have only a few assertions. The maximum number of assertions is obviously not clearly established but it is a bad smell if a dozen of asserts are in the same test case.  Like in "testChainedClosure()" in the commons.collections4.ClosureUtilsTest.java where 13 asserts are made in the same test. It makes it hard to understand why the test fails. It would gain to be cut in 2 or 3 smaller test cases. Here we cut the test case in half and duplicate it :
 
 public class testExample { 
        @Test    
