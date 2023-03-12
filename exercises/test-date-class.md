@@ -48,11 +48,11 @@ Use the following steps to design the test suite:
 
 
     Method isValidDate : 
-        caracteristic : Day value ; blocs : 
+        caracteristic : Day value ; blocs : <0, 0, >=1 et <=max(mois, année), >max(mois, année)
 
-                        month value ; blocs : 
+                        month value ; blocs : <=0, 1, 2,biggerThan2AndLessThan12, >12 
  
-                        year value ; blocs : 
+                        year value ; blocs :  <=0 ,année bissextile valide, année "normale" valide
             
 
     Method isLeapYear : 
@@ -82,3 +82,23 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+
+2. On a commencé par tester les happy path 'happyPath', au début la couverture initiale était 100% des méthodes
+   et 59% des lignes de code. on a créer d'autres cas de tests, qui nous ont permis de couvrir plus de lignes
+   en rajoutant des nouveaux input qui n'appartient pas au happy path, et aussi qui nous a conduit a corriger nos méthodes
+   à cause de l'échec de certains tests.
+   ![](/home/raouf/Pictures/Screenshots/question2ClassDateCoverage.png)
+
+3. Une méthode comporte un prédicat qui utilise plus de 2 opérateurs booléens:
+   isLeapYear() Elle doit tenir compte de toute combinaison de valeurs de vérité de toutes les clauses et garantir
+   toutes les valeurs possibles pour le prédicat. En réalisant l'analyse de chaque expression et des combinaisons possibles,
+   il est ressorti qu'il faut tester absolument 3 cas: a) une année multiple de 4, non multiple de 100 ,
+   non multiple de 400.(exemple: 1992) b) une année multiple de 4, multiple de 100, multiple de 400.(exemple: 2000) c)
+   une année non multiple de 4, non multiple de 100 non multiple de 400.(exemple: 2021) Les cas de test de a)
+   (isLeapYearLogicCoverage) et b) (isLeapYearLogicCoverage2) ont été ajoutés.
+   Par contre le cas c était déjà testé initialement donc pas besoin d'ajouter un test ici.
+
+4. Au début on avait les résultats suivant: couverture des lignes = 72% mutants générés = 54,
+   mutation killed = 59%.
+   En rajoutant des méthodes dans notre code on a pu augmenter les chiffres, couverture des lignes = 93% 
+mutants générés = 89, mutation killed = 83%.
